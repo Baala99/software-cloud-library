@@ -3,6 +3,7 @@ from django.db import models
 
 class Software(models.Model):
     name = models.CharField(max_length=64)
+    description = models.TextField(null=True)
     file = models.FileField(upload_to='uploads/')
 
     class Meta:

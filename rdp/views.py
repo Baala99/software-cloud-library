@@ -5,6 +5,7 @@ from .models import Software
 
 def index_view(request):
     all_software = Software.objects.all()
+    all_software = [all_software[i:i+3] for i in range(0, len(all_software), 3)]
     context = {'all_software': all_software}
     return render(request, 'rdp/index.html', context=context)
 

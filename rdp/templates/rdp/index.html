@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,7 +9,7 @@
         {% else %}
             <title>Software Cloud Library </title>
         {% endif %}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" >
@@ -20,16 +21,29 @@
     </head>
     <body>
         <div class="container-fluid">
-            <h1> Software Cloud Library </h1>
-            <hr/>
-            <p> Browse through the software packages available here and use them without any installation by entering
-                the username and password given to you at the time of registeration. </p>
-            <hr/>
-            <ul>
-                {% for software_package in all_software %}
-                    <li><a href="{% url 'download' software_package.name %}"> {{ software_package.name }} </a></li>
-                {% endfor %}
-            </ul>
+            <div class="jumbotron text-center">
+                <h1> Software Cloud Library </h1>
+                <p>Use Software Without Any Installation</p>
+            </div>
+            {% for software_package_list in all_software %}
+                <div class="row">
+                    {% for software_package in software_package_list %}
+                        <div class="col-sm-4">
+                            <div class="card" style="width: 20rem;">
+                                <img class="card-img-top" src="{% static 'rdp/images/'|add:software_package.name|add:'.png' %}" alt="software logo">
+                                <div class="card-block">
+                                    <h4 class="card-title">{{ software_package.name }}</h4>
+                                    <p class="card-text">{{ software_package.description }}</p>
+                                    <a href="{% url 'download' software_package.name %}"> Download </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col-sm-12 text-center">&copy; Team Apex 2017</div>
+            </div>
         </div>
     </body>
 </html>
