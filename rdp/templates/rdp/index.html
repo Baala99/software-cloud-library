@@ -30,7 +30,7 @@
                     {% for software_package in software_package_list %}
                         <div class="col-sm-4">
                             <div class="card" style="width: 20rem;">
-                                <img class="card-img-top" src="{% static 'rdp/images/'|add:software_package.name|add:'.png' %}" alt="software logo">
+                                <img class="card-img-top" width="318" height="180" src="{% static 'rdp/images/'|add:software_package.name|add:'.png' %}" alt="software logo">
                                 <div class="card-block">
                                     <h4 class="card-title">{{ software_package.name }}</h4>
                                     <p class="card-text">{{ software_package.description }}</p>
